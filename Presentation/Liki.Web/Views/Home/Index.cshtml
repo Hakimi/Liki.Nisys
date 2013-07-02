@@ -1,0 +1,165 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">LeaseItKeepIt</a>
+            </p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Welcome to LeaseItKeepIt!</h1>
+
+            </hgroup>
+
+            <table>
+        <tr>
+
+            <td style="width:50%;vertical-align:top; ">
+                <section class="content-wrapper main-content clear-fix">
+        <h3>Request Data</h3>
+                    <table>
+                        <tr>
+                            <td>action</td>
+                            <td>@ViewBag.action</td>
+                        </tr>
+                         <tr>
+                            <td>Merchant Id</td>
+                            <td>@ViewBag.merchant_id</td>
+                        </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td>@ViewBag.amount</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Name</td>
+                            <td>@ViewBag.billing_cust_name</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>    
+
+        <ol class="round">
+            <li>
+            </li>
+
+            <li>
+            </li>
+            <li>
+            </li>
+            <li></li>
+          @*  <li>redirect_url: @ViewBag.redirect_url
+            </li>
+            <li>working_key: @ViewBag.working_key
+            </li>
+            <li>checksum: @ViewBag.checksum
+            </li>
+            
+            <li>billing_cust_address': @ViewBag.billing_cust_address
+            </li>
+            <li>billing_cust_state': @ViewBag.billing_cust_state
+            </li>
+            <li>billing_cust_country': @ViewBag.billing_cust_country</li>
+            <li>billing_cust_tel': @ViewBag.billing_cust_tel</li>
+            <li>billing_cust_email': @ViewBag.billing_cust_email</li>
+            <li>delivery_cust_name': @ViewBag.delivery_cust_name</li>
+            <li>delivery_cust_address': @ViewBag.delivery_cust_address</li>
+            <li>delivery_cust_state': @ViewBag.delivery_cust_state</li>
+            <li>delivery_cust_country': @ViewBag.delivery_cust_country</li>
+            <li>delivery_cust_tel': @ViewBag.delivery_cust_tel</li>
+            <li>merchant_param': @ViewBag.merchant_param</li>
+            <li>billing_zip': @ViewBag.billing_zip</li>
+            <li>delivery_city': @ViewBag.delivery_city</li>
+            <li>delivery_zip': @ViewBag.delivery_zip</li>
+            <li>billing_cust_notes': @ViewBag.billing_cust_notes</li>
+*@
+
+        </ol>
+
+    </section>
+
+            </td>
+            <td style="width:50%;vertical-align:top;">
+                <form action="@Server.UrlDecode(@ViewBag.redirect_url)" method="post">
+           @{
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add("Y", "Y");
+            dictionary.Add("B", "B");
+            dictionary.Add("N", "N");
+            SelectList list = new SelectList(dictionary, "value", "key");
+        }
+
+        @{
+            Dictionary<string, string> CheckSumList = new Dictionary<string, string>();
+
+            CheckSumList.Add("True", "true");
+            CheckSumList.Add("False", "false");
+            SelectList list1 = new SelectList(CheckSumList, "value", "key");
+        }
+    <section class="content-wrapper main-content clear-fix">
+        <h3>Post Data</h3>
+            <table>
+                    <tr>
+                          <td>Confirm Number</td>
+                            <td>@Html.TextBox("ConfirmNumber","333366666")</td>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>@Html.TextBox("Amount", 33)</td>
+                    </tr>
+                    <tr>
+                        <td>Order Id</td>
+                        <td>@Html.TextBox("Order_Id", 2222)</td>
+                    </tr>
+                <tr>
+                        <td>Merchant Param</td>
+                        <td>@Html.TextBox("Merchant_Param", "test")</td>
+                    </tr>
+                <tr>
+                        <td>Checksum</td>
+                        <td>@Html.TextBox("Checksum",(string) @ViewBag.checksum)</td>
+                    </tr>
+                <tr>
+                        <td>Auth Desc</td>
+                        <td>@Html.DropDownList("AuthDesc", list)</td>
+                    </tr>
+                <tr>
+                        <td>Card_Category</td>
+                        <td>@Html.TextBox("card_category", "test Card")</td>
+                    </tr>
+                <tr>
+                        <td>Bank Name</td>
+                        <td>@Html.TextBox("bank_name", "test Bank")</td>
+                    </tr>
+                   
+            </table>            
+                 @Html.Hidden("Merchant_Id", (string)@ViewBag.merchant_id)
+                 <input type="submit" name="button1" value="Submit" />
+                 
+    </section>
+  
+
+    </form></td>
+        </tr>
+
+    </table>
+        </div>
+    </section>
+
+    
+
+    
+    <br />
+     
+
+
+</div>
