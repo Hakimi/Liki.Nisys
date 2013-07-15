@@ -1,0 +1,104 @@
+﻿@model Liki.Web.Models.Register
+
+@{
+    ViewBag.Title = "Home";
+}
+ @Scripts.Render("~/bundles/jquery")
+@section Scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+    <script type="text/javascript" src="~/Scripts/Register/Register.js"></script>
+    <script type="text/javascript">
+        var baseUri = '@ViewBag.ApiUrl';
+        var SaveSessionurl = '@Url.Action("SaveSession", "AccountLogin")';
+        
+
+        $(document).ready(function () {
+            ko.applyBindings(new LoginViewModel());
+        });
+    </script>
+    
+}
+
+
+<table class="table">
+    <tr>
+        <td>
+
+            <div>
+                <form id="formOrder" action="@Server.UrlDecode(@ViewBag.redirect_url)" method="post">
+                    <p>
+                        <span>Your order summary : </span>
+                    </p>
+                    <p>
+                        <span>Your Product :@ViewBag.order_id </span>
+                    </p>
+                    <p>
+                        <span>Your Monthly Payment :@ViewBag.amount </span>
+                    </p>
+                    <p>
+                        @Html.ActionLink("Learn more about LeaseItKeepIt", "AboutUs", "Home", null, new { @class = "btn-link" })
+                    </p>
+                    <p>
+
+                        <a class="btn-link" onclick="document.getElementById('formOrder').submit();">I'd rather pay in full now.</a>
+                    </p>
+                    @Html.Hidden("ConfirmNumber","333366666")
+                    @Html.Hidden("Amount", 33)
+                    @Html.Hidden("Merchant_Param", "test")
+                    @Html.Hidden("Checksum",(string) @ViewBag.checksum)
+                    @Html.Hidden("AuthDesc", "B")
+                    @Html.Hidden("card_category", "test Card")
+                    @Html.Hidden("bank_name", "test Bank")
+                    @Html.Hidden("NewPayOff", "yes")
+                    
+                </form>
+                <p>
+                    <span>LeaseItKeepIt. Stay Flexiable. For more information read our @Html.ActionLink("User Agreement", "UserAgreement", "Home", null, new { @class = "btn-link" })  and @Html.ActionLink("Privacy Policy.", "PrivacyPolicy", "Home", null, new { @class = "btn-link" })   </span>
+                </p>
+
+            </div>
+        </td>
+        <td>
+            <div class="form-horizontal">
+
+                @Html.ActionLink("Create a LeaseItKeepIt account", "Index", "CreditApp", null, new { @class = "btn-link" })
+                <br />
+                <br />
+                <span>Have a LeaseItKeepIt account? </span>
+                <br />
+                <form id="frmLogin" name="frmLogin" data-bind="submit: create">
+                    @Html.ValidationSummary(true)
+
+                    <br />
+                    <div class="control-group">
+
+                        @Html.LabelFor(x => x.EmailAddress, "Email Address", new { @class = "control-label" })
+
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.EmailAddress, new { id = "txtEmailAddressLogin" })<br/>
+                            @Html.ValidationMessageFor(m => m.EmailAddress)
+                        </div>
+                    </div>
+                    <div class="control-group">
+
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.PasswordFor(m => m.Password, new { id = "txtPasswordLogin" })<br/>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                             <input type="submit" class="btn btn-primary"  value="Sign in" />
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </td>
+    </tr>
+
+</table>
+

@@ -1,0 +1,315 @@
+﻿@{
+    ViewBag.Title = "EasyQuery - ad-hoc query builder for LIKI web-sites.";
+     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+            var QueryPanelBlock = $("#QueryPanel"),
+            ColumnsPanelBlock = $('#ColumnsPanel');
+
+            var onListRequest = function (listName, onResult) {
+                if (listName == "RegionList") {
+                    onResult([{ id: "CA", text: "California" }, { id: "CO", text: "Colorado" }, { id: "OR", text: "Oregon" }, { id: "WA", text: "Washington" }]);
+                }
+                else {
+                    EQ.client.defaultListRequestHandler(listName, onResult);
+                }
+            };
+
+
+            EQ.client.init({
+                serviceUrl: getPrefix() + "EasyQuery", //"EQService.asmx",
+                modelName: "Customer",
+                entitiesPanel: { showCheckboxes: true },
+                columnsPanel: { allowAggrColumns: true, attrElementFormat: "{entity} {attr}", showColumnCaptions: true, adjustEntitiesMenuHeight: false },
+                queryPanel: { listRequestHandler: onListRequest, alwaysShowButtonsInPredicates: true, adjustEntitiesMenuHeight: false }
+            });
+
+
+            EQ.core.queryChanged(function (params) {
+                buildQuery();
+            });
+
+            //clear button
+            $('#btnClear').click(function () {
+                EQ.client.clearQuery();
+            });
+
+            // load query button
+            $('#btnLoadQuery').click(function () {
+                EQ.client.loadQuery("LastQuery", function (data) {
+
+                    clearErrors();
+                    clearResultPanel();
+                    buildQuery();
+                });
+            });
+
+            // save query button
+            $('#btnSaveQuery').click(function () {
+                var QueryPanelBlock = $("#QueryPanel");
+                var queryObj = QueryPanelBlock.QueryPanel('option', 'query');
+
+                EQ.client.saveQuery({
+                    "query": queryObj,
+                    "queryName": "LastQuery",
+                    "success": function () {
+                        window.alert("Query saved!");
+                    }
+                });
+            });
+
+
+            // execute sql button             
+            $('#btnExecute').click(function () {
+                buildAndExecute();
+            });
+
+
+
+        });
+
+        function getPrefix() {
+            var res = window.location.pathname;
+            //if (res.charAt(res.length - 1) !== '/')
+            //    res = res + '/';
+            res = location.protocol + '//' + location.host+'/';
+            return res;
+        }
+
+        function buildQuery() {
+            var QueryPanelBlock = $("#QueryPanel");
+            var query = QueryPanelBlock.QueryPanel('option', 'query');
+
+            EQ.client.buildQuery({
+                "query": query,
+                beforeSend: function () {
+                    BuildQueryBeforeSend();
+                },
+                success: function (result) {
+                    BuildQuerySuccess(result);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    BuildQueryError(errorThrown, jqXHR.responseText);
+                }
+
+            });
+        }
+
+        function buildAndExecute() {
+            
+            var QueryPanelBlock = $("#QueryPanel");
+            var query = QueryPanelBlock.QueryPanel('option', 'query');
+
+            EQ.client.buildAndExecute({
+                "query": query,
+                beforeSend: function () {
+                    ExecuteSQLBeforeSend();
+                },
+                success: function (result) {
+                    ExecuteSQLSuccess(result);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    ExecuteSQLError(errorThrown, jqXHR.responseText);
+                }
+
+            });
+        }
+
+        function clearErrors() {
+            var resultPanels = $("#sqlPanel, #resultPanel");
+            if (resultPanels.hasClass('error')) {
+                resultPanels.removeClass('error');
+                $('.errorBlock').remove();
+            }
+        }
+
+        function clearResultPanel() {
+            var resultPanel = $("#resultPanel");
+            if (resultPanel.text().length > 0) {
+                resultPanel.text('');
+            }
+
+        }
+
+        function DrawGrid(grid) {
+            var table = {};
+            table.body = $('<table></table>').css('width', '100%');
+            if (grid.table === undefined) {
+                table.body.html('<span class="eqjs-result-error">' + grid.error + '</span>');
+                return table.body;
+            }
+
+            for (var i = 0; i < grid.table.captions.length; i++) {
+                table.captions = '<th>' + grid.table.captions[i] + '</th>';
+                table.body.append(table.captions);
+            }
+            table.body.wrapInner('<tr class="eqjs-result-header"></tr>');
+            for (i = 0; i < grid.table.rows.length; i++) {
+                var trbody = '';
+                for (var j = 0; j < grid.table.rows[i].length; j++) {
+                    table.td = '<td>' + grid.table.rows[i][j] + '</td>';
+                    trbody += table.td;
+                }
+                table.tr = '<tr>' + trbody + '</tr>'
+                table.body.append(table.tr);
+            }
+            return table.body;
+        }
+
+
+        var resultProgressIndicator = $('<div></div>', { 'class': 'eqjs-result loader' }),
+            sqlProgressIndicator = $('<div></div>', { 'class': 'eqjs-result loader' });
+
+        function BuildQueryBeforeSend() {
+            var sqlPanel = $("#sqlPanel");
+            sqlPanel.animate({ opacity: '0.5' }, 200);
+            sqlPanel.append(sqlProgressIndicator);
+
+        };
+
+        function ExecuteSQLBeforeSend() {
+            var resultPanel = $("#resultPanel");
+            resultPanel.animate({ opacity: '0.5' }, 200);
+            resultPanel.html(resultProgressIndicator);
+        }
+
+
+        function BuildQuerySuccess(sqlText) {
+            var sqlPanel = $("#sqlPanel");
+            try {
+                if (sqlText.error) {
+                    sqlPanel.addClass('error').html('<div class="errorBlock"><div>' + sqlText.error + '</div></div>');
+                }
+                else {
+                    sqlPanel.animate({ 'opacity': 1 }, 200);
+                    sqlPanel.html('<div class="eqjs-sql-result">' + sqlText.statement ? sqlText.statement.replace(/\r\n/g, "<br />").replace(/  /g, "&nbsp;&nbsp;") : "" + '</div>');
+                }
+            }
+            finally {
+                sqlProgressIndicator.remove();
+            }
+        }
+
+        function ExecuteSQLSuccess(gridJson) {
+
+            var resultPanel = $("#resultPanel");
+            try {
+                if (gridJson.error) {
+                    resultPanel.addClass('error').html('<div class="errorBlock"><div>' + gridJson.error + '</div></div>');
+                }
+                else if (gridJson.resultSet) {
+                    
+                    var grid = this.DrawGrid(gridJson.resultSet);
+                    resultPanel.html(grid).delay(100);
+                    resultPanel.animate({ 'opacity': 1 }, 200);
+
+                    //$.each(gridJson.resultSet.table.rows, function (key, val) {
+
+                    //});
+
+                    ////var parm1 = JSON.stringify({ data: gridJson.resultSet.table.rows })
+                    //var url = "http://localhost:4698/Home/SeachResult/";
+                    //var parm1 = JSON.stringify({ data: gridJson.resultSet.table.rows })
+                    //var retVal = JSON.stringify(gridJson.resultSet.table.rows);
+                    //var parm = JSON.stringify({ data: gridJson.resultSet })
+
+                    //$.ajax({
+                    //    url: url,
+                    //    data: parm1,
+                    //    success: function(){
+                    //        location.href = url;
+                    //    },
+                    //    type: "POST",
+                    //    contentType: "application/json;charset=utf-8"
+                    //});
+                }
+                else {
+                    resultPanel.html("");
+                }
+            }
+            finally {
+                resultProgressIndicator.remove();
+            }
+        };
+
+        function ExecuteSQLError(errorText, errorMsg) {
+            var resultPanel = $("#resultPanel");
+            resultProgressIndicator.remove();
+            resultPanel.animate({ 'opacity': 1 }, 200);
+            resultPanel.addClass('error').append('<div class="errorBlock">ERROR: ' + errorText + '<div>' + $.parseJSON(errorMsg).Message + '</div></div>');
+        }
+
+            function BuildQueryError(errorText, errorMsg) {
+                var sqlPanel = $("#sqlPanel");
+                sqlProgressIndicator.remove();
+                sqlPanel.addClass('error').prepend('<div class="errorBlock">ERROR: ' + errorText + '<div>' + $.parseJSON(errorMsg).Message + '</div></div>');
+            }
+
+	</script>
+
+
+<div id="main">
+    <div class="header">
+            <div class="title">EasyQuery</div>
+            <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+        </div>
+    <div id="content">
+        <div class="header-panel">
+            <div class="entities-block">
+                <hr class="entities-hr hr" />
+                <div class="entities-title">Entities</div>
+                <div id="EntitiesPanel" onselectstart="return false"></div>
+            </div>
+
+            <div class="central-block">
+                <div class="columns-block">
+                    <hr class="columns-hr hr" />
+                    <div class="columns-title">Columns</div>
+                    <div>
+                        <div id="ColumnsPanel"></div>
+                    </div>
+                </div>
+                <div class="condition-block">
+                    <hr class="condition-hr hr" />
+                    <div class="condition-title">Conditions</div>
+                    <div class="condition-content">
+                        <div id="QueryPanel"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-block">
+                <hr class="menu-hr hr" />
+                <div class="menu-title">Menu</div>
+                <div class="menu-content">
+                    <div id="btnClear" class="clear-button">Clear query</div>
+                    <div id="btnLoadQuery" class="get-query-button">Load query</div>
+                    <div id="btnSaveQuery" class="get-query-button">Save query</div>
+                    <div id="btnExecute" class="get-sql-button">Execute</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-panel">
+            <div class="sql-panel">
+                <hr class="sql-panel-hr hr" />
+                <div class="sql-panel-title">SQL</div>
+                <div id="sqlPanel" class="sql-block">
+                    <div class="eqjs-sql-result"></div>
+                </div>
+            </div>
+            <div class="result-panel">
+                <hr class="result-panel-hr hr" />
+                <div class="result-panel-title">Result</div>
+                <div id="resultPanel" class="result-panel-content"></div>
+                <div class="result-panel-content-padding">
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

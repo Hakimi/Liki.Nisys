@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Liki.Web.Models.Register>
+@{
+    ViewBag.Title = "Customers Details";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        var baseUri = '@ViewBag.ApiUrl';
+
+        $(document).ready(function () {
+            ko.applyBindings(new AppViewModelDetails());
+        });
+
+    </script>
+    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+    <script type="text/javascript" src="~/Scripts/Register/Details.js"></script>
+     
+}
+<br />
+<br />
+<div>
+    <h1>Customers List : </h1>
+    <br />
+   
+    <table width="90%"  align="center">
+        <tr>
+            <td>CustomerId</td>
+            <td>Title</td>
+            <td>EmailAddress</td>
+            <td>FirstName </td>
+            <td>MiddleName</td>
+            <td>LastName     </td>
+            <td>Suffix</td>
+            <td>Password</td>
+            <td></td>
+        </tr>
+    </table>
+    <table width="90%"  align="center" data-bind="foreach: Customers">
+        <tr>
+            <td>
+                <label data-bind="text: CustomerID"></label>
+            </td>
+            <td>
+                <label data-bind="text: Title"></label>
+            </td>
+            <td>
+                <label data-bind="text: EmailAddress"></label>
+            </td>
+            <td>
+                <label data-bind="text: FirstName"></label>
+            </td>
+            <td>
+                <label data-bind="text: MiddleName"></label>
+            </td>
+            <td>
+                <label data-bind="text: LastName"></label>
+            </td>
+            <td>
+                <label data-bind="text: Suffix"></label>
+            </td>
+            <td>
+                <label data-bind="text: Password"></label>
+            </td>
+            <td>
+                <button data-bind="click: EditCustomer">EditCustomer</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="CustomersEditObject" data-bind="visible: CustomersEditObject().length > 0">
+    <h1>Customer Detail</h1>
+    <table data-bind="foreach: CustomersEditObject">
+        <tr>
+            <td>CustomerId</td>
+            <td>
+                <span data-bind="text: $data.CustomerID"></span>
+                <input type="hidden" id="txtCustomerID" data-bind="value: $data.CustomerID" />
+            </td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>
+                <input type="text" id="txtTitle" data-bind="value: $data.Title" />
+            </td>
+        </tr>
+        <tr>
+            <td>EmailAddress</td>
+            <td>
+                <input type="text" id="txtEmailAddress" data-bind="value: $data.EmailAddress" /></td>
+        </tr>
+        <tr>
+            <td>FirstName</td>
+            <td>
+                <input type="text" id="txtFirstName" data-bind="value: $data.FirstName" /></td>
+        </tr>
+        <tr>
+            <td>MiddleName</td>
+            <td>
+                <input type="text" id="txtMiddleName" data-bind="value: $data.MiddleName" /></td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>
+                <input type="text" id="txtLastName" data-bind="value: $data.LastName" /></td>
+        </tr>
+        <tr>
+            <td>Suffix</td>
+            <td>
+                <input type="text" id="txtSuffix" data-bind="value: $data.Suffix" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" id="txtPassword" data-bind="value: $data.Password" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Update" onclick="UpdateCustomer();" />
+            </td>
+        </tr>
+    </table>
+</div>

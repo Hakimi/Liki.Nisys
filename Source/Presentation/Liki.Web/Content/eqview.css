@@ -1,0 +1,454 @@
+/* load fonts */
+@font-face {
+	font-family: 'Conv_segoeuil';
+	src: url('fonts/segoeuil.eot');
+	src: local('â?º'), url('fonts/segoeuil.ttf') format('truetype'), url('fonts/segoeuil.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/**/
+
+/*setting to all page */
+#main{
+    width:1174px;
+    background: #fff;
+    margin:auto;
+    padding-top:10px;
+}
+
+/* title */
+.title{
+    float: left;
+    background: url('images/logo.png') no-repeat center left;
+    padding: 0 0 0 35px;
+    color: #3A94D4;
+    font: bold 25px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+/* sub-title*/
+.sub-title{
+    margin: 14px 0 0 10px;
+    float: left;
+    font: bold 11px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #3a94d4;	
+}
+
+/* header */
+.header{
+    display:block;
+    height:40px;
+}
+
+/* content */
+#content{
+    background: #f6f6f6;
+    border:2px solid #dedede;
+    padding:20px;
+}
+
+.hr{
+    height: 6px;
+    border: none;
+    height: 7px !IE7;
+    border-color: transparent !IE7;
+    margin: -7px 0 !IE7;
+}
+
+/* entities panel */
+.entities-block{    
+    width: 20%;
+    float: left;
+    margin: 0 20px 0 0 !important;
+    background: #fff;
+    border: 1px solid silver;
+}
+
+.entities-hr{
+    background: #7BC4F8;
+}
+
+.entities-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #7BC4F8;
+}
+
+.eqJsEmptyBlock{    
+    width: 20%;
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+#EntitiesPanel{
+    height: 389px;
+}
+
+#EntitiesPanel > div.eqjs-ep-entity{
+    height: 90%;
+    height: 87% !IE7;
+    overflow-x: auto;
+    overflow-x: hidden !IE7;
+}
+
+/* conditions block */
+.eqJsConditionsBlock, .eqJsColumnsBlock{
+    width: 59%;
+    float: left;
+    background: #fff;
+    border: 1px solid silver;
+    margin: 0 0 20px 0; 
+}
+
+/* global block - top border */
+.eqJsConditionsBlock_borderTop, .eqJsColumnsBlock_borderTop{
+    background: #1777B1;
+    height: 6px;
+    border: none;
+}
+
+/* global block - title */
+.eqJsConditionsBlock_title, .eqJsColumnsBlock_title{
+    font: 100 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 8px 10px;
+    background: #F8F7F7;
+    border-bottom: 1px solid #7BC4F8;
+}
+
+/* global block - content */
+.eqJsConditionsBlock_content, .eqJsColumnsBlock_content{
+    padding: 10px;
+    font: normal 15px Arial;
+}
+
+
+/* menu block */
+.menu-block{
+    width: 17%;
+    float: right;
+    background: #fff;
+    border: 1px solid silver;
+}
+
+/* menu block - top border */
+.menu-hr{
+    background: #AE67DF;
+}
+
+/* menu block - title */
+.menu-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+}
+
+/* menu block - content */
+.menu-content{
+    padding: 10px;
+}
+
+.menu-content div{
+    margin: 10px 0;
+}
+
+/* menu block - buttons */
+.get-query-button{
+    background : url('images/loadButton.png') no-repeat center left;
+    width: 118px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 9px 9px 33px;
+    display: inline-block;
+    text-align: center;
+}
+
+.execute-sql-button{
+    float: right;
+    font: normal 18px Calibri;
+    color: #1777B1;
+    text-decoration: underline;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.get-sql-button{
+    background: url('images/execute.png') no-repeat center;
+    width: 118px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 9px 9px 33px;
+    display: inline-block;
+    text-align: center;
+    margin: 30px 0px !important;  
+}
+
+.clear-button{
+    background: url('images/clearButton.png') no-repeat;
+    width: 118px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 9px 9px 33px;
+    display: inline-block;
+    text-align: center;
+}
+
+.save-button{
+    background: url('images/saveButton.png') no-repeat;
+    width: 117px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 7px 9px 6px 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+.eqJs-language-block{
+    float: right;
+    margin: 10px 0 0 0;
+}
+/* sql panel */
+.sql-panel{
+    width: 25%;
+    border: 1px solid #C4D6E5;
+    background: white;
+    float: left;
+}
+
+/* sql panel - border -top */
+.sql-panel-hr{
+    background: #A8ABAD;
+}
+
+/* sql panel - title */
+.sql-panel-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #A8ABAD;
+}
+
+/* sql panel - block */
+.sql-block{
+    padding: 7px;
+    position: relative;
+    height: 226px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+/* sql panel - result block */
+.eqjs-sql-result{
+    height: 222px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font: normal 11px Verdana;
+}
+
+/* result panel */
+.result-panel{
+    background: white;
+    position: relative;
+    border: 1px solid #C1D5E4;
+    width: 73%;
+    float: right;
+}
+
+/* result panel - border top */
+.result-panel-hr{
+    background: #237901;
+}
+
+/* result panel - title */
+.result-panel-title{
+    border-bottom: 1px solid #237901;
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F8F7F7;
+}
+
+/* result panel - content result */
+.result-panel-content{
+    padding: 10px 5px 10px 5px;
+    font: normal 15px Arial;
+    height: 224px;
+    height: 216px !IE7;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.result-panel-content table{
+    font: normal 12px Calibri;
+}
+
+.result-panel-content table td{
+    padding: 5px;
+    color: #4F4F4F;
+    font: 10px Arial;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.eqjs-result-header th{
+    background-color: #F6F6F6;
+    color: #4F4F4F;
+    height: 30px;
+    font: bold 11px Arial !important;
+    border-bottom: 1px solid #E4E4E4;
+    text-align: left;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+
+/* content - block min height */
+.header-panel{
+    height: 433px;
+    height: 450px !IE7;
+}
+.header-panel > div{
+    height: 433px;
+    margin: 0 0 20px 0;
+}
+
+.bottom-panel{
+    height : 313px;
+}
+
+.bottom-panel > div{
+    height : 287px;
+    margin: 0 0 20px 0;
+}
+/* query panel & query text */
+.eqjs-result-error{
+    color: Red;
+    font: normal 20px Calibri;
+    text-align: center;
+}
+
+.eqjs-result.loader{
+    background: url('images/ajax-loader.gif') no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+/* result table style */
+.eqjs-result-header td{
+    font: bold 14px Calibri;
+    border-bottom: 1px solid silver !important;
+}
+
+/* error text */
+.error, .error div{
+    color: Red;
+    font: normal 20px Calibri;
+}
+
+#ColumnsPanel{
+    height: 136px;
+}
+
+#QueryPanel{
+    height: 186px;
+    height: 185px !IE7;
+}
+
+/* central block */
+.central-block{
+    width: 59%;
+    float: left;
+}
+
+.columns-block{
+    background: white;
+    border: 1px solid silver;
+    height: 180px;
+    margin: 0 0 20px 0;
+}
+
+.columns-hr{
+    background: #1777B1;
+}
+
+.columns-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+}
+
+.eqjs-qc-column-drag{
+    opacity: 0.7;
+    cursor: n-resize !important;
+    background: #F1F1F1;
+    width: 664px;
+}
+
+.eqjs-qc-column-sort{
+    opacity: 0.7;
+    cursor: n-resize !important;
+    background: #E8F3FF;
+    padding: 0 20px !important;
+}
+
+/* condition panel */
+.condition-block{
+    background: white;
+    border: 1px solid silver;
+    height: 230px;
+}
+
+.condition-hr{
+    background: #1777B1;
+}
+
+.condition-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+}
+
+.condition-content{
+    font: normal 15px Arial;
+}
+/* copyright */
+#footer{
+    margin: 10px 0;
+    padding: 0 0 20px 0;
+    font: normal 12px Calibri;
+    color: #000;
+}
+
+.copyright{
+    float: left;
+}
+
+.power-by{
+    float: right;
+}
+
+.copyright a, .power-by a{
+    color: #237901;
+}

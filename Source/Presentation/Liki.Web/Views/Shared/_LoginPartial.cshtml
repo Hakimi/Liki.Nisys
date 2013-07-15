@@ -1,0 +1,34 @@
+﻿
+@*@if (Request.IsAuthenticated)
+{
+    <text>
+        Hello, (User.Identity.Name) @ViewBag.UserName
+        @using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("Register", "Register", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@
+
+
+
+@*@if (!string.IsNullOrEmpty(@ViewBag.UserName))
+{
+    <text>
+        Hello,  @ViewBag.UserName
+        @using (Html.BeginForm("LogOff", "Register", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("Log in", "Index", "Register", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+*@

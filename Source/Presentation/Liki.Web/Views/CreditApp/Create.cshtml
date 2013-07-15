@@ -1,0 +1,89 @@
+﻿
+@model Liki.App.Service.DTO.CustomerDTO
+
+@{
+    ViewBag.Title = "Home";
+}
+
+
+<table>
+    <tr>
+        <td>txtTitle:</td>
+        <td>
+            <input type="text" id="txtTitle" style="width: 50PX" />
+
+        </td>
+    </tr>
+    <tr>
+        <td>EmailId:</td>
+        <td>
+            <input type="text" id="txtEmailAddress" style="width: 50PX" />
+
+        </td>
+    </tr>
+    <tr>
+        <td>First Name:</td>
+        <td>
+            <input type="text" id="txtFirstName" /></td>
+    </tr>
+    <tr>
+        <td>txtMiddleName Name:</td>
+        <td>
+            <input type="text" id="txtMiddleName" /></td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>
+            <input type="text" id="txtLastName" /></td>
+    </tr>
+    <tr>
+        <td>txtSuffix:</td>
+        <td>
+            <input type="text" id="txtSuffix" /></td>
+    </tr>
+    <tr>
+        <td>txtPassword</td>
+        <td>
+            <input type="text" id="txtPassword" /></td>
+    </tr>
+</table>
+
+<p>
+    <button value="btnSubmit"  onclick="AddStudent();" >Submit</button>
+</p>
+
+ <script type="text/javascript">
+     //var baseUri = 'http://localhost:10001/api/Register';
+
+     var baseUri = 'http://localhost:10001/api/Register';
+
+        function AddStudent() {
+            debugger;
+            jQuery.support.cors = true;
+            var customerDto = {
+                Title: $('#txtTitle').val(),
+                EmailAddress: $('#txtEmailAddress').val(),
+                FirstName: $('#txtFirstName').val(),
+                MiddleName: $('#txtMiddleName').val(),
+                LastName: $('#txtLastName').val(),
+                Suffix: $('#txtSuffix').val(),
+                Password: $('#txtPassword').val()
+            };
+
+            $.ajax({
+                url: 'http://localhost:10001/api/register/',
+                type: 'POST',
+                data: JSON.stringify(customerDto),
+                contentType: "application/json;charset=utf-8",
+                success: function () {
+                    alert("Success");
+                },
+                error: function (err) {
+                    alert("Fail");
+                    alert('\n' + err + '\n');
+                    alert('\n' + err.toString + '\n');
+                }
+            });
+        }
+     
+    </script>

@@ -1,0 +1,168 @@
+﻿@model Liki.Web.Models.Register
+ 
+
+@section Scripts 
+{
+    <script type="text/javascript">
+        var baseUri = '@ViewBag.ApiUrl';
+       
+
+        $(document).ready(function () {
+            alert("button");
+            $("#btnSubmit").click(function () {
+                alert("button");
+            });
+        });
+        
+
+        function RegisterCostomer() {
+            alert("button");
+            //jQuery.support.cors = true;
+            //var customerDto = {
+            //    Title: $('#txtTitle').val(),
+            //    EmailAddress: $('#txtEmailAddress').val(),
+            //    FirstName: $('#txtFirstName').val(),
+            //    MiddleName: $('#txtMiddleName').val(),
+            //    LastName: $('#txtLastName').val(),
+            //    Suffix: $('#txtSuffix').val(),
+            //    Password: $('#txtPassword').val()
+            //};
+
+            //$.ajax({
+            //    url: baseUri + '/Register',
+            //    type: 'POST',
+            //    data: JSON.stringify(customerDto),
+            //    contentType: "application/json;charset=utf-8",
+
+            //    success: function (result) {
+            //        if (result == "false") {
+            //            alert("Invalid Data, Try again.");
+            //        } else {
+            //            $('#lblMessage').innerText = "Registered Successfully";
+            //            alert("Successfully Registered");
+            //            FadeOutAll();
+            //            window.location = location.protocol + '//' + location.host + '/register/Details';
+            //        }
+            //    },
+            //    error: function (err) {
+            //        alert("Fail : " + err.responseText);
+            //    }
+            //});
+        }
+
+    </script>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script type="text/javascript" src="~/Scripts/Register/Register.js"></script>
+}
+
+<table>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.Title)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.Title, new { id = "txtTitle" })
+        </td>
+    </tr>
+       <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.Title)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.EmailAddress)
+                        </td>
+                        <td class="labelY">
+                            @Html.TextBoxFor(m => m.EmailAddress, new { id = "txtEmailAddress" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.EmailAddress)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.FirstName)
+                        </td>
+                        <td class="labelY">
+                            @Html.TextBoxFor(m => m.FirstName, new { id = "txtFirstName" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.MiddleName)
+                        </td>
+                        <td class="labelY">
+                            @Html.TextBoxFor(m => m.MiddleName, new { id = "txtMiddleName" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.MiddleName)
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.LastName)
+                        </td>
+                        <td class="labelY">
+                            @Html.TextBoxFor(m => m.LastName, new { id = "txtLastName" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.Suffix)
+                        </td>
+                        <td class="labelY">
+                            @Html.TextBoxFor(m => m.Suffix, new { id = "txtSuffix" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.Suffix)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="labelY">
+                            @Html.LabelFor(m => m.Password)
+                        </td>
+                        <td class="labelY">
+                            @Html.PasswordFor(m => m.Password, new { id = "txtPassword" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </td>
+                    </tr>
+</table>
+@*<button value="button" id="btnSubmit" onclick="javascript:RegisterCostomer();">Submit</button>*@
+                    
