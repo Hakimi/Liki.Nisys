@@ -80,6 +80,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liki.WebAPI.Tests", "App\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liki.Web", "Presentation\Liki.Web\Liki.Web.csproj", "{080246EA-42BF-4501-884E-9D19C3FBCE66}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dbscript", "dbscript", "{E67DB064-8599-415F-9195-00EE865D7DF6}"
+	ProjectSection(SolutionItems) = preProject
+		dbscript\LikiDB Script.sql = dbscript\LikiDB Script.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
