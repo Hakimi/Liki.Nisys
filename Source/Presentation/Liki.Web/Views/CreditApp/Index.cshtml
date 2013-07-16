@@ -1,26 +1,26 @@
 ﻿@using Liki.Web.App_LocalResource
 @using Liki.Web.Models
+@model Liki.Web.Models.Register
 @{
     ViewBag.Title = "MainWizard";
 }
 
 @Scripts.Render("~/bundles/knockout")
-
+@Scripts.Render("~/bundles/jquery")
 @section Scripts 
 {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
 
-    <script>
         var baseUri = '@ViewBag.ApiUrl';
-
-        $(document).ready(function () {
-
+        $(document).ready(function() {
+            var self = this;
+            self.Registers = ko.observableArray();
             var CustomerID = '@ViewBag.CustomerID';
             if (CustomerID != '0') {
                 ko.applyBindings(new RegViewModelDetails());
             }
-
         });
-
 
         function RegViewModelDetails() {
             baseUri = baseUri + "/Register/" + '@ViewBag.CustomerID';
@@ -37,54 +37,62 @@
                 $('#txtPassword').val(customer.Password);
             }
 
-            $.getJSON(baseUri, function (Customers) {
+            $.getJSON(baseUri, function(Customers) {
                 self.Customers.push(new RegisterViewModel(self, Customers));
             });
         }
+
         function onNext(parent, panel) {
-            jQuery.support.cors = true;
-            var customerDto = {
-                CustomerID: '@ViewBag.CustomerID',
-                Title: $('#txtTitle').val(),
-                EmailAddress: $('#txtEmailAddress').val(),
-                FirstName: $('#txtFirstName').val(),
-                MiddleName: $('#txtMiddleName').val(),
-                LastName: $('#txtLastName').val(),
-                Suffix: $('#txtSuffix').val(),
-                Password: $('#txtPassword').val()
-            };
-            var baseUri = '@ViewBag.ApiUrl';
+            $("#formaddwizard1").validate();
+            if ($("#formaddwizard1").valid()) {
+                jQuery.support.cors = true;
+                var customerDto = {
+                    CustomerID: '@ViewBag.CustomerID',
+                    Title: $('#txtTitle').val(),
+                    EmailAddress: $('#txtEmailAddress').val(),
+                    FirstName: $('#txtFirstName').val(),
+                    MiddleName: $('#txtMiddleName').val(),
+                    LastName: $('#txtLastName').val(),
+                    Suffix: $('#txtSuffix').val(),
+                    Password: $('#txtPassword').val()
+                };
+                var baseUri = '@ViewBag.ApiUrl';
 
-            $.ajax({
-                url: baseUri + '/Register?callback=?',
-                type: 'POST',
-                data: JSON.stringify(customerDto),
-                contentType: "application/json;charset=utf-8",
+                $.ajax({
+                    url: baseUri + '/Register?callback=?',
+                    type: 'POST',
+                    data: JSON.stringify(customerDto),
+                    contentType: "application/json;charset=utf-8",
 
-                success: function (result) {
-                    if (result == "false") {
-                        alert("Invalid Data, Try again.");
-                    } else {
-                        //$('#lblMessage').innerText = "Registered Successfully";
-                        //alert("Successfully Registered");
+                    success: function(result) {
+                        if (result == "false") {
+                            alert("Invalid Data, Try again.");
+                        } else {
+                            //$('#lblMessage').innerText = "Registered Successfully";
+                            //alert("Successfully Registered");
 
 
+                        }
+                    },
+                    error: function(err) {
+                        alert("Fail : " + err.responseText);
                     }
-                },
-                error: function (err) {
-                    alert("Fail : " + err.responseText);
-                }
-            });
-
+                });
+            }
+            else {
+                $('#prerequisites').collapse({
+                    toggle: false
+                })
+            }
 
         }
 
-        $(window).load(function () {
+        $(window).load(function() {
             $(".acc-wizard").accwizard({ onNext: onNext });
         })
 
         var baseUri = '@ViewBag.ApiUrl';
-       
+
     </script>
 }
 @*    <script type="text/javascript">
