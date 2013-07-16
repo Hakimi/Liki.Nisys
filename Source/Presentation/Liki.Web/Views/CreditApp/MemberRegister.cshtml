@@ -1,67 +1,7 @@
 ﻿@model Liki.Web.Models.Register
-<<<<<<< HEAD
- 
-
-@section Scripts 
-{
-    <script type="text/javascript">
-        var baseUri = '@ViewBag.ApiUrl';
-       
-
-        $(document).ready(function () {
-            alert("button");
-            $("#btnSubmit").click(function () {
-                alert("button");
-            });
-        });
-        
-
-        function RegisterCostomer() {
-            alert("button");
-            //jQuery.support.cors = true;
-            //var UserDto = {
-            //    Title: $('#txtTitle').val(),
-            //    EmailAddress: $('#txtEmailAddress').val(),
-            //    FirstName: $('#txtFirstName').val(),
-            //    MiddleName: $('#txtMiddleName').val(),
-            //    LastName: $('#txtLastName').val(),
-            //    Suffix: $('#txtSuffix').val(),
-            //    Password: $('#txtPassword').val()
-            //};
-
-            //$.ajax({
-            //    url: baseUri + '/Register',
-            //    type: 'POST',
-            //    data: JSON.stringify(UserDto),
-            //    contentType: "application/json;charset=utf-8",
-
-            //    success: function (result) {
-            //        if (result == "false") {
-            //            alert("Invalid Data, Try again.");
-            //        } else {
-            //            $('#lblMessage').innerText = "Registered Successfully";
-            //            alert("Successfully Registered");
-            //            FadeOutAll();
-            //            window.location = location.protocol + '//' + location.host + '/register/Details';
-            //        }
-            //    },
-            //    error: function (err) {
-            //        alert("Fail : " + err.responseText);
-            //    }
-            //});
-        }
-
-    </script>
-
-    <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
-     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script type="text/javascript" src="~/Scripts/Register/Register.js"></script>
-}
-=======
 <div>
     @Html.ValidationSummary(true)
 </div>
->>>>>>> origin/Poonam
 
 <table>
     <tr>
