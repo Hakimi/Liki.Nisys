@@ -13,29 +13,22 @@
     <script type="text/javascript">
 
         var baseUri = '@ViewBag.ApiUrl';
-<<<<<<< HEAD
-
-        $(document).ready(function () {
-
-            var UserID = '@ViewBag.UserID';
-            if (UserID != '0') {
-=======
         $(document).ready(function() {
             var self = this;
             self.Registers = ko.observableArray();
-            var CustomerID = '@ViewBag.CustomerID';
-            if (CustomerID != '0') {
->>>>>>> origin/Poonam
+
+                        var UserID = '@ViewBag.UserID';
+                        if (UserID != '0') {
                 ko.applyBindings(new RegViewModelDetails());
             }
+
         });
 
         function RegViewModelDetails() {
             baseUri = baseUri + "/Register/" + '@ViewBag.UserID';
             var self = this;
             self.Users = ko.observableArray();
-
-            function RegisterViewModel(root, User) {
+                        function RegisterViewModel(root, User) {
                 $('#txtTitle').val(User.Title);
                 $('#txtEmailAddress').val(User.EmailAddress);
                 $('#txtFirstName').val(User.FirstName);
@@ -44,52 +37,18 @@
                 $('#txtSuffix').val(User.Suffix);
                 $('#txtPassword').val(User.Password);
             }
+                            $.getJSON(baseUri, function (Users) {
+                                    self.Users.push(new RegisterViewModel(self, Users));
 
-<<<<<<< HEAD
-            $.getJSON(baseUri, function (Users) {
-                self.Users.push(new RegisterViewModel(self, Users));
             });
         }
-        function onNext(parent, panel) {
-            jQuery.support.cors = true;
-            var UserDto = {
-                UserID: '@ViewBag.UserID',
-                Title: $('#txtTitle').val(),
-                EmailAddress: $('#txtEmailAddress').val(),
-                FirstName: $('#txtFirstName').val(),
-                MiddleName: $('#txtMiddleName').val(),
-                LastName: $('#txtLastName').val(),
-                Suffix: $('#txtSuffix').val(),
-                Password: $('#txtPassword').val()
-            };
-            var baseUri = '@ViewBag.ApiUrl';
-
-            $.ajax({
-                url: baseUri + '/Register?callback=?',
-                type: 'POST',
-                data: JSON.stringify(UserDto),
-                contentType: "application/json;charset=utf-8",
-
-                success: function (result) {
-                    if (result == "false") {
-                        alert("Invalid Data, Try again.");
-                    } else {
-                        //$('#lblMessage').innerText = "Registered Successfully";
-                        //alert("Successfully Registered");
-
-=======
-            $.getJSON(baseUri, function(Customers) {
-                self.Customers.push(new RegisterViewModel(self, Customers));
-            });
-        }
->>>>>>> origin/Poonam
 
         function onNext(parent, panel) {
             $("#formaddwizard1").validate();
             if ($("#formaddwizard1").valid()) {
                 jQuery.support.cors = true;
-                var customerDto = {
-                    CustomerID: '@ViewBag.CustomerID',
+                var UserDto = {
+                    UserID: '@ViewBag.UserID',
                     Title: $('#txtTitle').val(),
                     EmailAddress: $('#txtEmailAddress').val(),
                     FirstName: $('#txtFirstName').val(),
@@ -103,16 +62,13 @@
                 $.ajax({
                     url: baseUri + '/Register?callback=?',
                     type: 'POST',
-                    data: JSON.stringify(customerDto),
+                    data: JSON.stringify(UserDto),
                     contentType: "application/json;charset=utf-8",
 
                     success: function(result) {
                         if (result == "false") {
                             alert("Invalid Data, Try again.");
                         } else {
-                            //$('#lblMessage').innerText = "Registered Successfully";
-                            //alert("Successfully Registered");
-
 
                         }
                     },
@@ -137,75 +93,71 @@
 
     </script>
 }
-@*    <script type="text/javascript">
-       
-
-    </script>*@
-
-    @*<script type="text/javascript" src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
-    <script type="text/javascript" src="~/Scripts/Register/Register.js"></script>*@
-@*}*@
 
 <h2>Liki Wizard</h2>
 
 <body>
-        
+
     <div class="row-fluid">
     </div>
     <div class="row-fluid acc-wizard">
-      <div class="span3" style="padding-left: 2em;">
-        <p style="margin-bottom: 2em;">
-         
-        </p>
-        <ol class="acc-wizard-sidebar">
-          <li class="acc-wizard-todo"><a href="#prerequisites">Registration</a></li>
-          @*<li class="acc-wizard-todo"><a href="#addwizard">Feature Link1</a></li>*@
-        </ol>
-      </div>
-      <div class="span9">
-        <div class="accordion" id="accordion-demo">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#prerequisites">
-                Registration
-              </a>
-            </div>
-            <div id="prerequisites" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                <form id="formaddwizard1">
-                 <div>
-                        @Html.Partial("MemberRegister",new Liki.Web.Models.Register())
-                      
-                 </div>
-                </form>
-               
-              </div> <!--/.accordion-inner -->
-            </div> <!-- /#prerequisites -->
-          </div> <!-- /.accordion-group -->
-          
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              @*<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#addwizard">
+        <div class="span3" style="padding-left: 2em;">
+            <p style="margin-bottom: 2em;">
+            </p>
+            <ol class="acc-wizard-sidebar">
+                <li class="acc-wizard-todo"><a href="#prerequisites">Registration</a></li>
+                @*<li class="acc-wizard-todo"><a href="#addwizard">Feature Link1</a></li>*@
+            </ol>
+        </div>
+        <div class="span9">
+            <div class="accordion" id="accordion-demo">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#prerequisites">Registration
+                        </a>
+                    </div>
+                    <div id="prerequisites" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <form id="formaddwizard1">
+                                <div>
+                                    @Html.Partial("MemberRegister", new Liki.Web.Models.Register())
+
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--/.accordion-inner -->
+                    </div>
+                    <!-- /#prerequisites -->
+                </div>
+                <!-- /.accordion-group -->
+
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        @*<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-demo" href="#addwizard">
                 Feature Link1
               </a>*@
-            </div>
-            <div id="addwizard" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                <form id="form-addwizard">
-                  
-                  <p>
-                    Registered Successfully
-                  </p>
-                </form>
-              </div> <!--/.accordion-inner -->
-            </div> <!-- /#addwizard -->
-          </div> <!-- /.accordion-group -->
+                    </div>
+                    <div id="addwizard" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <form id="form-addwizard">
 
+                                <p>
+                                    Registered Successfully
+                                </p>
+                            </form>
+                        </div>
+                        <!--/.accordion-inner -->
+                    </div>
+                    <!-- /#addwizard -->
+                </div>
+                <!-- /.accordion-group -->
+
+            </div>
         </div>
-      </div>
     </div>
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-    
-    
-  </body>
+
+
+</body>
