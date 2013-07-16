@@ -1,4 +1,5 @@
 ﻿@model Liki.Web.Models.Register
+<<<<<<< HEAD
  
 
 @section Scripts 
@@ -56,6 +57,11 @@
      <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script type="text/javascript" src="~/Scripts/Register/Register.js"></script>
 }
+=======
+<div>
+    @Html.ValidationSummary(true)
+</div>
+>>>>>>> origin/Poonam
 
 <table>
     <tr>
@@ -66,103 +72,101 @@
             @Html.TextBoxFor(m => m.Title, new { id = "txtTitle" })
         </td>
     </tr>
-       <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.Title)
-                        </td>
-                    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.Title)
+        </td>
+    </tr>
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.EmailAddress)
-                        </td>
-                        <td class="labelY">
-                            @Html.TextBoxFor(m => m.EmailAddress, new { id = "txtEmailAddress" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.EmailAddress)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.EmailAddress)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.EmailAddress, new { id = "txtEmailAddress" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.EmailAddress)
+        </td>
+    </tr>
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.FirstName)
-                        </td>
-                        <td class="labelY">
-                            @Html.TextBoxFor(m => m.FirstName, new { id = "txtFirstName" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.FirstName)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.FirstName)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.FirstName, new { id = "txtFirstName" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </td>
+    </tr>
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.MiddleName)
-                        </td>
-                        <td class="labelY">
-                            @Html.TextBoxFor(m => m.MiddleName, new { id = "txtMiddleName" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.MiddleName)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.MiddleName)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.MiddleName, new { id = "txtMiddleName" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.MiddleName)
+        </td>
+    </tr>
 
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.LastName)
-                        </td>
-                        <td class="labelY">
-                            @Html.TextBoxFor(m => m.LastName, new { id = "txtLastName" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.LastName)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.LastName)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.LastName, new { id = "txtLastName" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.LastName)
+        </td>
+    </tr>
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.Suffix)
-                        </td>
-                        <td class="labelY">
-                            @Html.TextBoxFor(m => m.Suffix, new { id = "txtSuffix" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.Suffix)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.Suffix)
+        </td>
+        <td class="labelY">
+            @Html.TextBoxFor(m => m.Suffix, new { id = "txtSuffix" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.Suffix)
+        </td>
+    </tr>
 
-                    <tr>
-                        <td class="labelY">
-                            @Html.LabelFor(m => m.Password)
-                        </td>
-                        <td class="labelY">
-                            @Html.PasswordFor(m => m.Password, new { id = "txtPassword" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(m => m.Password)
-                        </td>
-                    </tr>
+    <tr>
+        <td class="labelY">
+            @Html.LabelFor(m => m.Password)
+        </td>
+        <td class="labelY">
+            @Html.PasswordFor(m => m.Password, new { id = "txtPassword" })
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ValidationMessageFor(m => m.Password)
+        </td>
+    </tr>
 </table>
-@*<button value="button" id="btnSubmit" onclick="javascript:RegisterCostomer();">Submit</button>*@
-                    
