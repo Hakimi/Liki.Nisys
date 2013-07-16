@@ -162,7 +162,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountLoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\EasyQueryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CreditAppController.cs">
@@ -187,6 +187,7 @@
   <ItemGroup>
     <Content Include="App_Data\Customer.xml" />
     <Content Include="App_Data\Queries\LastQuery.xml" />
+    <Content Include="App_Data\Users.xml" />
     <Content Include="Content\bootstrap\css\acc-wizard.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
@@ -361,7 +362,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Home\SearchResult.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\CreditApp\HomePage.cshtml" />
     <Content Include="Views\CreditApp\RegisterPartial.cshtml" />
     <Content Include="Views\CreditApp\MemberRegister.cshtml" />
@@ -372,6 +372,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\EasyQuery.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_LocalResource\Registration.resx">

@@ -4,7 +4,7 @@ using Liki.Web.Models;
 
 namespace Liki.Web.Controllers
 {
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
         #region Method
         public ActionResult Index()

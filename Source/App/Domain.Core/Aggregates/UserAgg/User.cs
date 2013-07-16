@@ -1,18 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Liki.Domain.Seedwork;
 
-namespace Liki.Domain.Core.Aggregates.CustomerAgg
+namespace Liki.Domain.Core.Aggregates.UserAgg
 {
-    public class Customer
+    public class User
         : Entity
     {
         #region Property
         
         /// <summary>
-        /// The customer identifier
+        /// The User identifier
         /// </summary>
         //[Key]
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Get or set the Title
@@ -31,7 +31,7 @@ namespace Liki.Domain.Core.Aggregates.CustomerAgg
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// The customer first name
+        /// The User first name
         /// </summary>
         [Required]
         [Display(Name = "First name")]
@@ -45,7 +45,7 @@ namespace Liki.Domain.Core.Aggregates.CustomerAgg
         public string MiddleName { get; set; }
 
         /// <summary>
-        /// The customer lastName
+        /// The User lastName
         /// </summary>
         [Required]
         [Display(Name = "Last name")]
@@ -77,13 +77,13 @@ namespace Liki.Domain.Core.Aggregates.CustomerAgg
         protected override void Validate()
         {
             if (FirstName == null)
-                base.AddBrokenRule(CustomerBusinessRules.FirstNameRequired);
+                base.AddBrokenRule(UserBusinessRules.FirstNameRequired);
 
             if (LastName == null)
-                base.AddBrokenRule(CustomerBusinessRules.LastNameRequired);
+                base.AddBrokenRule(UserBusinessRules.LastNameRequired);
 
             if (EmailAddress == null)
-                base.AddBrokenRule(CustomerBusinessRules.EmailRequired);
+                base.AddBrokenRule(UserBusinessRules.EmailRequired);
 
         }
         #endregion

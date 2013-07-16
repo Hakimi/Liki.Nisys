@@ -1,21 +1,21 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using Liki.Domain.Core.Aggregates.CustomerAgg;
+using Liki.Domain.Core.Aggregates.UserAgg;
 
 namespace Liki.Domain.Core.Mapping
 {
-    public class CustomerMap : EntityTypeConfiguration<Customer>
+    public class UserMap : EntityTypeConfiguration<User>
     {
         #region Constructors
         /// <summary>
-        /// Customer map
+        /// User map
         /// </summary>
-        public CustomerMap()
+        public UserMap()
         {
             // Primary Key
-            this.HasKey(t => t.CustomerID );
+            this.HasKey(t => t.UserID );
             // Table & Column Mappings
-            this.ToTable("Customer");
-            this.Property(t => t.CustomerID).HasColumnName("CustomerID");
+            this.ToTable("Users");
+            this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.EmailAddress).HasColumnName("EmailAddress");
             this.Property(t => t.FirstName).HasColumnName("FirstName");

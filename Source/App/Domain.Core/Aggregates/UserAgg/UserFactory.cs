@@ -1,11 +1,11 @@
-﻿namespace Liki.Domain.Core.Aggregates.CustomerAgg
+﻿namespace Liki.Domain.Core.Aggregates.UserAgg
 {
     /// <summary>
-    /// This is the factory for Customer creation, which means that the main purpose
+    /// This is the factory for User creation, which means that the main purpose
     /// is to encapsulate the creation knowledge.
     /// What is created is a transient entity instance, with nothing being said about persistence as yet
     /// </summary>
-    public static class CustomerFactory
+    public static class UserFactory
     {
         #region Method
 
@@ -20,12 +20,12 @@
         /// <param name="sSuffix"></param>
         /// <param name="sPassword"></param>
         /// <returns></returns>
-        public static Customer CreateCustomer(int CustomerID, string sTitle, string sEmailAddress, string sFirstName, string sMiddleName, string sLastName, string sSuffix, string sPassword)
+        public static User CreateUser(int UserID, string sTitle, string sEmailAddress, string sFirstName, string sMiddleName, string sLastName, string sSuffix, string sPassword)
         {
             //create new instance and set identity
-            var customer = new Customer
+            var User = new User
             {
-                CustomerID = CustomerID,
+                UserID = UserID,
                 Title = sTitle,
                 EmailAddress = sEmailAddress,
                 FirstName = sFirstName,
@@ -35,11 +35,11 @@
                 Password = sPassword
             };
 
-            // customer.GenerateNewIdentity();
+            // User.GenerateNewIdentity();
 
             //set data
 
-            return customer;
+            return User;
         }
         #endregion
 

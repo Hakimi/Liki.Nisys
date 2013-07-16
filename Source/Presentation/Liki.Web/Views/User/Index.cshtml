@@ -8,42 +8,42 @@
 
             var self = this;
             //debugger;
-            self.Customers = ko.observableArray();
-            self.CustomersEdit = ko.observableArray();
+            self.Users = ko.observableArray();
+            self.UsersEdit = ko.observableArray();
 
-            var baseUri = 'http://localhost:10001/api/customer';
+            var baseUri = 'http://localhost:10001/api/User';
 
             // var baseUri = '@ViewBag.ApiUrl';
 
-            function CustomerViewModel(root, Customer) {
+            function UserViewModel(root, User) {
                 //debugger;
                 var self = this;
-                self.CustomerID = Customer.CustomerID,
-                self.Title = Customer.Title,
-                self.EmailAddress = Customer.EmailAddress,
-                self.FirstName = Customer.FirstName,
-                self.MiddleName = Customer.MiddleName,
-                self.LastName = Customer.LastName,
-                self.Suffix = Customer.Suffix,
-                self.Password = Customer.Password
+                self.UserID = User.UserID,
+                self.Title = User.Title,
+                self.EmailAddress = User.EmailAddress,
+                self.FirstName = User.FirstName,
+                self.MiddleName = User.MiddleName,
+                self.LastName = User.LastName,
+                self.Suffix = User.Suffix,
+                self.Password = User.Password
 
-                self.EditCustomer = function () {
+                self.EditUser = function () {
 
-                    root.CustomersEdit.push(self);
+                    root.UsersEdit.push(self);
                 };
             }
-            $.getJSON(baseUri, function (Customers) {
-                $.each(Customers, function (index, Customer) {
-                    self.Customers.push(new CustomerViewModel(self, Customer));
+            $.getJSON(baseUri, function (Users) {
+                $.each(Users, function (index, User) {
+                    self.Users.push(new UserViewModel(self, User));
                 })
             });
 
-            self.update = function (Customer) {
+            self.update = function (User) {
                 debugger;
-                alert(baseUri + '/' + Customer.CustomerID);
+                alert(baseUri + '/' + User.UserID);
                 $.ajax({
-                    type: "PUT", url: baseUri + '/' + Customer.CustomerID,
-                    data: JSON.stringify(Customer),
+                    type: "PUT", url: baseUri + '/' + User.UserID,
+                    data: JSON.stringify(User),
                     contentType: "application/json;charset=utf-8",
                     success: function (data) {
                         document.location.reload();
@@ -54,11 +54,11 @@
 
         };
 
-        function UpdateCustomer() {
+        function UpdateUser() {
             debugger;
             jQuery.support.cors = true;
-            var customerDto = {
-                CustomerID: $('#txtCustomerID').val(),
+            var UserDto = {
+                UserID: $('#txtUserID').val(),
                 Title: $('#txtTitle').val(),
                 EmailAddress: $('#txtEmailAddress').val(),
                 FirstName: $('#txtFirstName').val(),
@@ -69,9 +69,9 @@
             };
 
             $.ajax({
-                url: 'http://localhost:10001/api/customer/' + customerDto.CustomerID,
+                url: 'http://localhost:10001/api/User/' + UserDto.UserID,
                 type: 'PUT',
-                data: JSON.stringify(customerDto),
+                data: JSON.stringify(UserDto),
                 contentType: "application/json;charset=utf-8",
                 success: function () {
                     document.location.reload();
@@ -87,11 +87,11 @@
         $(document).ready(function () {
             ko.applyBindings(new AppViewModel());
         });
-        //function WriteResponse(customer) {
+        //function WriteResponse(User) {
 
-        //    var strResult = "<table><th>CustomerId</th><th>Title</th><th>EmailAddress</th><th>FirstName</th><th>MiddleName</th>";
-        //    $.each(customer, function (index, customer) {
-        //        strResult += "<tr><td>" + customer.CustomerId + "</td><td> " + customer.Title + "</td><td> " + customer.EmailAddress + "</td><td>" + customer.FirstName + "</td><td>" + customer.MiddleName + "</td></tr>";
+        //    var strResult = "<table><th>UserId</th><th>Title</th><th>EmailAddress</th><th>FirstName</th><th>MiddleName</th>";
+        //    $.each(User, function (index, User) {
+        //        strResult += "<tr><td>" + User.UserId + "</td><td> " + User.Title + "</td><td> " + User.EmailAddress + "</td><td>" + User.FirstName + "</td><td>" + User.MiddleName + "</td></tr>";
         //    });
         //    strResult += "</table>";
         //    $("#divResult").html(strResult);
@@ -107,12 +107,12 @@
 <div>
     <!-- List of products -->
     <div>
-        <h1>Customers</h1>
+        <h1>Users</h1>
         <br />
         ApiUrl = @ViewBag.ApiUrl
         <table>
             <tr>
-                <td>CustomerId</td>
+                <td>UserId</td>
                 <td>Title</td>
                 <td>EmailAddress</td>
                 <td>FirstName </td>
@@ -123,10 +123,10 @@
                 <td></td>
             </tr>
         </table>
-        <table data-bind="foreach: Customers">
+        <table data-bind="foreach: Users">
             <tr>
                 <td>
-                    <label data-bind="text: CustomerID"></label>
+                    <label data-bind="text: UserID"></label>
                 </td>
                 <td>
                     <label data-bind="text: Title"></label>
@@ -150,24 +150,24 @@
                     <label data-bind="text: Password"></label>
                 </td>
                 <td>
-                    <button data-bind="click: EditCustomer">EditCustomer</button>
+                    <button data-bind="click: EditUser">EditUser</button>
                 </td>
             </tr>
 
         </table>
 
     </div>
-    <div id="CustomersEdit" data-bind="visible: CustomersEdit().length > 0">
-        <h1>Customer Detail</h1>
+    <div id="UsersEdit" data-bind="visible: UsersEdit().length > 0">
+        <h1>User Detail</h1>
 
 
-        <table data-bind="foreach: CustomersEdit">
+        <table data-bind="foreach: UsersEdit">
 
             <tr>
-                <td>CustomerId</td>
+                <td>UserId</td>
                 <td>
-                    <span data-bind="text: $data.CustomerID"></span>
-                    <input type="hidden" id="txtCustomerID" data-bind="value: $data.CustomerID" />
+                    <span data-bind="text: $data.UserID"></span>
+                    <input type="hidden" id="txtUserID" data-bind="value: $data.UserID" />
 
                 </td>
             </tr>
@@ -212,7 +212,7 @@
 
                 <td>
                     @*<input type="button" value="Update"  data-bind="click: $root.update" />*@
-                    <input type="button" value="Update" onclick="UpdateCustomer();" />
+                    <input type="button" value="Update" onclick="UpdateUser();" />
 
 
                 </td>

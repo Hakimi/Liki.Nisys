@@ -9,7 +9,7 @@ using Rhino.Mocks;
 namespace Liki.Web.Test
 {
     [TestFixture]
-    public class CustomerControllerTest
+    public class UserControllerTest
     {
         
         #region SetUp / TearDown

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Liki.App.Service.DTO.CustomerDTO>
+﻿@model IEnumerable<Liki.App.Service.DTO.UserDTO>
 
 @{
     ViewBag.Title = "SearchResult";
@@ -8,13 +8,13 @@
 <table>
     <tr>
         <th>
-            Customer ID
+            User ID
         </th>
         <th>
-            Customer FirstName
+            User FirstName
         </th>
         <th>
-            Customer LastName
+            User LastName
         </th>
         <th>
             EmpAddress
@@ -25,7 +25,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
+            @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -37,7 +37,7 @@
             @Html.DisplayFor(modelItem => item.EmailAddress)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
         </td>

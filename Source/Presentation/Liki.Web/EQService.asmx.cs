@@ -33,7 +33,7 @@ namespace Korzh.EasyQuery.Mvc3Demo
         static EQService() {
 
             dataPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
-            dataModelPath = System.IO.Path.Combine(dataPath, "Customer.xml");
+            dataModelPath = System.IO.Path.Combine(dataPath, "Users.xml");
             connectionString = ConfigurationManager.ConnectionStrings["likidbContext"].ToString();
             //ConfigurationManager.ConnectionStrings["LikiDB"].ToString();
             queriesPath = System.IO.Path.Combine(dataPath, "Queries");

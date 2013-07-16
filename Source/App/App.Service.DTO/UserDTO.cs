@@ -2,20 +2,20 @@
 {
     /// <summary>
     /// This is the data transfer object
-    /// for customer entity. The name
+    /// for User entity. The name
     /// of properties for this type
     /// is based on conventions of many mappers
     /// to simplificate the mapping process
     /// </summary>
-    public class CustomerDTO
+    public class UserDTO
     {
         #region Property
         
         /// <summary>
-        /// The customer identifier
+        /// The User identifier
         /// </summary>
         //[Key]
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Get or set the Title
@@ -28,7 +28,7 @@
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// The customer first name
+        /// The User first name
         /// </summary>
         public string FirstName { get; set; }
 
@@ -38,7 +38,7 @@
         public string MiddleName { get; set; }
 
         /// <summary>
-        /// The customer lastName
+        /// The User lastName
         /// </summary>
         public string LastName { get; set; }
 

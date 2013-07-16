@@ -1,41 +1,41 @@
 ﻿
 function AppViewModelDetails() {
     var self = this;
-    self.Customers = ko.observableArray();
-    self.CustomersEditObject = ko.observableArray();
+    self.Users = ko.observableArray();
+    self.UsersEditObject = ko.observableArray();
     
-    function customerViewModel(root, customer) {
+    function UserViewModel(root, User) {
         var selfCust = this;
-        selfCust.CustomerID = customer.CustomerID,
-        selfCust.Title = customer.Title,
-        selfCust.EmailAddress = customer.EmailAddress,
-        selfCust.FirstName = customer.FirstName,
-        selfCust.MiddleName = customer.MiddleName,
-        selfCust.LastName = customer.LastName,
-        selfCust.Suffix = customer.Suffix,
-        selfCust.Password = customer.Password
+        selfCust.UserID = User.UserID,
+        selfCust.Title = User.Title,
+        selfCust.EmailAddress = User.EmailAddress,
+        selfCust.FirstName = User.FirstName,
+        selfCust.MiddleName = User.MiddleName,
+        selfCust.LastName = User.LastName,
+        selfCust.Suffix = User.Suffix,
+        selfCust.Password = User.Password
 
-        selfCust.EditCustomer = function () {
+        selfCust.EditUser = function () {
             
             $("html, body").animate({ scrollTop: $(document).height() }, "slow");
             
-            root.CustomersEditObject.removeAll();
-            root.CustomersEditObject.push(selfCust);
+            root.UsersEditObject.removeAll();
+            root.UsersEditObject.push(selfCust);
         };
     }
 
-    $.getJSON(baseUri, function (Customers) {
-        $.each(Customers, function(index, Customer) {
-            self.Customers.push(new customerViewModel(self, Customer));
+    $.getJSON(baseUri, function (Users) {
+        $.each(Users, function(index, User) {
+            self.Users.push(new UserViewModel(self, User));
         });
     });
 };
 
-function UpdateCustomer() {
+function UpdateUser() {
    //var baseUri = '@ViewBag.ApiUrl';
     jQuery.support.cors = true;
-    var customerDto = {
-        CustomerID: $('#txtCustomerID').val(),
+    var UserDto = {
+        UserID: $('#txtUserID').val(),
         Title: $('#txtTitle').val(),
         EmailAddress: $('#txtEmailAddress').val(),
         FirstName: $('#txtFirstName').val(),
@@ -46,10 +46,10 @@ function UpdateCustomer() {
     };
 
     $.ajax({
-         url: baseUri + '/' + customerDto.CustomerID + "?callback=?",
+         url: baseUri + '/' + UserDto.UserID + "?callback=?",
         //url: baseUri,
         type: 'PUT',
-        data: JSON.stringify(customerDto),
+        data: JSON.stringify(UserDto),
         contentType: "application/json;charset=utf-8",
         success: function () {
             document.location.reload();

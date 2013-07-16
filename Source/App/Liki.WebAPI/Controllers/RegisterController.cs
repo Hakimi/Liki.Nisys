@@ -12,15 +12,20 @@ namespace Liki.WebAPI.Controllers
     public class RegisterController : ApiController
     {
         #region Members
-        private readonly ICustomerService _iCustomerService;
+
+        private readonly IUserService _iUserService;
+
         #endregion
+
         #region Constructors
 
-        public RegisterController(ICustomerService customerservice)
+        public RegisterController(IUserService Userservice)
         {
-            _iCustomerService = customerservice;
+            _iUserService = Userservice;
         }
+
         #endregion
+
         #region Method
 
         // GET api/register
@@ -28,47 +33,48 @@ namespace Liki.WebAPI.Controllers
         /// Get
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CustomerDTO> Get()
+        public IEnumerable<UserDTO> Get()
         {
-            return _iCustomerService.GetAllCustomer();
+            return _iUserService.GetAllUser();
         }
 
         // GET api/values/5
-        public CustomerDTO Get(int id)
+        public UserDTO Get(int id)
         {
-            return _iCustomerService.FindCustomer(id);
+            return _iUserService.FindUser(id);
         }
 
         // POST api/register
         /// <summary>
         /// Post
         /// </summary>
-        /// <param name="dto">customerdto object</param>
+        /// <param name="dto">Userdto object</param>
         /// <returns></returns>
-        public bool Post(CustomerDTO dto)
+        public bool Post(UserDTO dto)
         {
-            
+            //dto.UserFID = Guid.NewGuid().ToString().Substring(0, 10);
             if (ModelState.IsValid)
             {
-                _iCustomerService.AddNewCustomer(dto);
+                _iUserService.AddNewUser(dto);
 
                 return true;
             }
             return false;
         }
-        
+
         // PUT api/register/5
         /// <summary>
-        /// Edit Customer Details
+        /// Edit User Details
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="customerDto"></param>
+        /// <param name="UserDto"></param>
         /// <returns></returns>
-        public HttpResponseMessage PutRegister(int id, CustomerDTO customerDto)
+        public HttpResponseMessage PutRegister(int id, UserDTO UserDto)
         {
-            _iCustomerService.UpdateCustomer(customerDto);
+            _iUserService.UpdateUser(UserDto);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
         #endregion
     }
 

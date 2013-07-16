@@ -1,5 +1,5 @@
 ﻿using Liki.App.Service;
-using Liki.Domain.Core.Aggregates.CustomerAgg;
+using Liki.Domain.Core.Aggregates.UserAgg;
 using Liki.Domain.Seedwork;
 using Liki.Infrastructure.Data.Core.Repositories;
 using Liki.Infrastructure.Data.Seedwork;
@@ -11,13 +11,13 @@ namespace Liki.WebAPI
     public class BootStrapper
     {
         #region Method
+
         public static void ConfigureDependencies()
         {
             ObjectFactory.Initialize(x =>
-            {
-                x.AddRegistry<ControllerRegistry>();
-
-            });
+                {
+                    x.AddRegistry<ControllerRegistry>();
+                });
         }
 
         public class ControllerRegistry : Registry
@@ -27,12 +27,13 @@ namespace Liki.WebAPI
             {
 
                 // Repositories                
-                For<ICustomerService>().Use<CustomerService>();
-                For<ICustomerRepository>().Use<CustomerRepository>();
+                For<IUserService>().Use<UserService>();
+                For<IUserRepository>().Use<UserRepository>();
                 For<IUnitOfWork>().Use<UnitOfWork>();
                 For<IAuthenticationService>().Use<AuthenticationService>();
             }
         }
+
         #endregion
     }
 }

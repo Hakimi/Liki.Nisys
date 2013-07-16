@@ -4,19 +4,19 @@ namespace Liki.Web.Helpers
 {
     public class SessionHelper
     {
-        public static int CustomerId
+        public static int UserId
         {
             get
             {
-                if (HttpContext.Current == null || HttpContext.Current.Session["CustomerId"] == null)
+                if (HttpContext.Current == null || HttpContext.Current.Session["UserId"] == null)
                     return 0;
 
-                return HttpContext.Current.Session["CustomerId"] is int
-                           ? (int) HttpContext.Current.Session["CustomerId"]
+                return HttpContext.Current.Session["UserId"] is int
+                           ? (int) HttpContext.Current.Session["UserId"]
                            : 0;
 
             }
-            set { HttpContext.Current.Session["CustomerId"] = value; }
+            set { HttpContext.Current.Session["UserId"] = value; }
         }
 
 
