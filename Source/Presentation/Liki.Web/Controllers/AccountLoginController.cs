@@ -22,11 +22,11 @@ namespace Liki.Web.Controllers
         /// <summary>
         /// Save session value
         /// </summary>
-        /// <param name="CustomerId">Customer's Id</param>
-        /// <param name="EmailAddress">Customer's EmailAddress</param>
-        public void SaveSession(int CustomerId, string EmailAddress)
+        /// <param name="UserId">User's Id</param>
+        /// <param name="EmailAddress">User's EmailAddress</param>
+        public void SaveSession(int UserId, string EmailAddress)
         {
-            SessionHelper.CustomerId = CustomerId;
+            SessionHelper.UserId = UserId;
             SessionHelper.EmailAddress = EmailAddress;
         }
 

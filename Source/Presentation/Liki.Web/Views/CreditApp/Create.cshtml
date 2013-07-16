@@ -1,5 +1,5 @@
 ﻿
-@model Liki.App.Service.DTO.CustomerDTO
+@model Liki.App.Service.DTO.UserDTO
 
 @{
     ViewBag.Title = "Home";
@@ -60,7 +60,7 @@
         function AddStudent() {
             debugger;
             jQuery.support.cors = true;
-            var customerDto = {
+            var UserDto = {
                 Title: $('#txtTitle').val(),
                 EmailAddress: $('#txtEmailAddress').val(),
                 FirstName: $('#txtFirstName').val(),
@@ -73,7 +73,7 @@
             $.ajax({
                 url: 'http://localhost:10001/api/register/',
                 type: 'POST',
-                data: JSON.stringify(customerDto),
+                data: JSON.stringify(UserDto),
                 contentType: "application/json;charset=utf-8",
                 success: function () {
                     alert("Success");

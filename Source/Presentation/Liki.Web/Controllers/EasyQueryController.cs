@@ -27,7 +27,7 @@ namespace Korzh.EasyQuery.Mvc3Demo
         {
 
             dataPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
-            dataModelPath = System.IO.Path.Combine(dataPath, "Customer.xml");
+            dataModelPath = System.IO.Path.Combine(dataPath, "Users.xml");
 
          
             //connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + System.IO.Path.Combine(dataPath, "NWind.mdb"); 
@@ -145,9 +145,9 @@ namespace Korzh.EasyQuery.Mvc3Demo
             }
         }
 
-        public ActionResult RedirectToSearchResult(List<Liki.App.Service.DTO.CustomerDTO> lstCustomers)
+        public ActionResult RedirectToSearchResult(List<Liki.App.Service.DTO.UserDTO> lstUsers)
         {
-            return View("SearchResult", lstCustomers);
+            return View("SearchResult", lstUsers);
         }
 
         protected override List<ListItem> CoreGetNamedList(string listName) {

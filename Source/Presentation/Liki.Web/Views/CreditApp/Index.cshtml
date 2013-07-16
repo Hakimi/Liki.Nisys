@@ -14,8 +14,8 @@
 
         $(document).ready(function () {
 
-            var CustomerID = '@ViewBag.CustomerID';
-            if (CustomerID != '0') {
+            var UserID = '@ViewBag.UserID';
+            if (UserID != '0') {
                 ko.applyBindings(new RegViewModelDetails());
             }
 
@@ -23,28 +23,28 @@
 
 
         function RegViewModelDetails() {
-            baseUri = baseUri + "/Register/" + '@ViewBag.CustomerID';
+            baseUri = baseUri + "/Register/" + '@ViewBag.UserID';
             var self = this;
-            self.Customers = ko.observableArray();
+            self.Users = ko.observableArray();
 
-            function RegisterViewModel(root, customer) {
-                $('#txtTitle').val(customer.Title);
-                $('#txtEmailAddress').val(customer.EmailAddress);
-                $('#txtFirstName').val(customer.FirstName);
-                $('#txtMiddleName').val(customer.MiddleName);
-                $('#txtLastName').val(customer.LastName);
-                $('#txtSuffix').val(customer.Suffix);
-                $('#txtPassword').val(customer.Password);
+            function RegisterViewModel(root, User) {
+                $('#txtTitle').val(User.Title);
+                $('#txtEmailAddress').val(User.EmailAddress);
+                $('#txtFirstName').val(User.FirstName);
+                $('#txtMiddleName').val(User.MiddleName);
+                $('#txtLastName').val(User.LastName);
+                $('#txtSuffix').val(User.Suffix);
+                $('#txtPassword').val(User.Password);
             }
 
-            $.getJSON(baseUri, function (Customers) {
-                self.Customers.push(new RegisterViewModel(self, Customers));
+            $.getJSON(baseUri, function (Users) {
+                self.Users.push(new RegisterViewModel(self, Users));
             });
         }
         function onNext(parent, panel) {
             jQuery.support.cors = true;
-            var customerDto = {
-                CustomerID: '@ViewBag.CustomerID',
+            var UserDto = {
+                UserID: '@ViewBag.UserID',
                 Title: $('#txtTitle').val(),
                 EmailAddress: $('#txtEmailAddress').val(),
                 FirstName: $('#txtFirstName').val(),
@@ -58,7 +58,7 @@
             $.ajax({
                 url: baseUri + '/Register?callback=?',
                 type: 'POST',
-                data: JSON.stringify(customerDto),
+                data: JSON.stringify(UserDto),
                 contentType: "application/json;charset=utf-8",
 
                 success: function (result) {

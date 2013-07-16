@@ -11,10 +11,10 @@ namespace Liki.Web.Models
         #region Property
 
         /// <summary>
-        /// The customer identifier
+        /// The User identifier
         /// </summary>
         //[Key]
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Get or set the Title
@@ -33,7 +33,7 @@ namespace Liki.Web.Models
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// The customer first name
+        /// The User first name
         /// </summary>
         [Required]
         [Display(Name = "First name")]
@@ -47,7 +47,7 @@ namespace Liki.Web.Models
         public string MiddleName { get; set; }
 
         /// <summary>
-        /// The customer lastName
+        /// The User lastName
         /// </summary>
         [Required]
         [Display(Name = "Last name")]

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Liki.Web.Models;
 
 namespace Liki.Web.Controllers
@@ -9,7 +10,6 @@ namespace Liki.Web.Controllers
         
         public ActionResult Index()
         {
-
             return View();
         }
 

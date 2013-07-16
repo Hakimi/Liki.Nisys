@@ -49,9 +49,9 @@ namespace Liki.Web.Controllers
             return View("EasyQuery");
         }
 
-        public ActionResult SeachResult(List<Liki.App.Service.DTO.CustomerDTO> lstCustomers)
+        public ActionResult SeachResult(List<Liki.App.Service.DTO.UserDTO> lstUsers)
         {
-            return View("SearchResult", lstCustomers);
+            return View("SearchResult", lstUsers);
         }
         #endregion
         

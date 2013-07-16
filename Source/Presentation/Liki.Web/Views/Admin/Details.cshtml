@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Liki.Web.Models.Register>
 @{
-    ViewBag.Title = "Customers Details";
+    ViewBag.Title = "Users Details";
 }
 
 @section Scripts {
@@ -20,12 +20,12 @@
 <br />
 <br />
 <div>
-    <h1>Customers List : </h1>
+    <h1>Users List : </h1>
     <br />
    
     <table width="90%"  align="center">
         <tr>
-            <td>CustomerId</td>
+            <td>UserId</td>
             <td>Title</td>
             <td>EmailAddress</td>
             <td>FirstName </td>
@@ -36,10 +36,10 @@
             <td></td>
         </tr>
     </table>
-    <table width="90%"  align="center" data-bind="foreach: Customers">
+    <table width="90%"  align="center" data-bind="foreach: Users">
         <tr>
             <td>
-                <label data-bind="text: CustomerID"></label>
+                <label data-bind="text: UserID"></label>
             </td>
             <td>
                 <label data-bind="text: Title"></label>
@@ -63,20 +63,20 @@
                 <label data-bind="text: Password"></label>
             </td>
             <td>
-                <button data-bind="click: EditCustomer">EditCustomer</button>
+                <button data-bind="click: EditUser">EditUser</button>
             </td>
         </tr>
     </table>
 </div>
 
-<div id="CustomersEditObject" data-bind="visible: CustomersEditObject().length > 0">
-    <h1>Customer Detail</h1>
-    <table data-bind="foreach: CustomersEditObject">
+<div id="UsersEditObject" data-bind="visible: UsersEditObject().length > 0">
+    <h1>User Detail</h1>
+    <table data-bind="foreach: UsersEditObject">
         <tr>
-            <td>CustomerId</td>
+            <td>UserId</td>
             <td>
-                <span data-bind="text: $data.CustomerID"></span>
-                <input type="hidden" id="txtCustomerID" data-bind="value: $data.CustomerID" />
+                <span data-bind="text: $data.UserID"></span>
+                <input type="hidden" id="txtUserID" data-bind="value: $data.UserID" />
             </td>
         </tr>
         <tr>
@@ -117,7 +117,7 @@
         </tr>
         <tr>
             <td>
-                <input type="button" value="Update" onclick="UpdateCustomer();" />
+                <input type="button" value="Update" onclick="UpdateUser();" />
             </td>
         </tr>
     </table>

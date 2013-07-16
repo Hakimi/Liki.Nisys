@@ -76,11 +76,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\CustomerAgg\CustomerBusinessRules.cs" />
-    <Compile Include="Aggregates\CustomerAgg\CustomerFactory.cs" />
-    <Compile Include="Aggregates\CustomerAgg\ICustomerRepository.cs" />
-    <Compile Include="Aggregates\CustomerAgg\Customer.cs" />
-    <Compile Include="Mapping\CustomerMap.cs" />
+    <Compile Include="Aggregates\UserAgg\IUserRepository.cs" />
+    <Compile Include="Aggregates\UserAgg\User.cs" />
+    <Compile Include="Aggregates\UserAgg\UserBusinessRules.cs" />
+    <Compile Include="Aggregates\UserAgg\UserFactory.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\TransactionMap.cs" />
     <Compile Include="Aggregates\ProductAgg\ProductActual.cs" />
     <Compile Include="Aggregates\LeaseAgg\ProductLease.cs" />

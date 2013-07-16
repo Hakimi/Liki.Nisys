@@ -15,7 +15,7 @@ namespace Liki.Web
             string dataPath = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
 
             DbModel model = new DbModel();
-            model.LoadFromFile(System.IO.Path.Combine(dataPath, "Customer.xml"));
+            model.LoadFromFile(System.IO.Path.Combine(dataPath, "Users.xml"));
 
             return model;
         }

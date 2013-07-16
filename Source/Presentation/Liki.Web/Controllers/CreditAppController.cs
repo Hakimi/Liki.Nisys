@@ -26,7 +26,7 @@ namespace Liki.Web.Controllers
         {
 
             ViewBag.ApiUrl = Config.WebAPIUrl + "/api";
-            ViewBag.CustomerID = SessionHelper.CustomerId;
+            ViewBag.UserID = SessionHelper.UserId;
             return View("Index");
 
             //ViewBag.ApiUrl = Config.WebAPIUrl + "/api";

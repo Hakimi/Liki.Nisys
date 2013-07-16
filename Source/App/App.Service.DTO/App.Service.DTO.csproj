@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerDTO.cs" />
+    <Compile Include="UserDTO.cs" />
     <Compile Include="Payment\PaymentRequest.cs" />
     <Compile Include="Payment\PaymentResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,8 +1,8 @@
 ﻿
 
-function AddCustomer() {
+function AddUser() {
     jQuery.support.cors = true;
-    var customerDto = {
+    var UserDto = {
         Title: $('#txtTitle').val(),
         EmailAddress: $('#txtEmailAddress').val(),
         FirstName: $('#txtFirstName').val(),
@@ -15,7 +15,7 @@ function AddCustomer() {
     $.ajax({
         url: baseUri + '/Register?callback=?',
         type: 'POST',
-        data: JSON.stringify(customerDto),
+        data: JSON.stringify(UserDto),
         contentType: "application/json;charset=utf-8",
 
         success: function(result) {
@@ -39,11 +39,10 @@ function LoginViewModel() {
     self.Registers = ko.observableArray();
 
     self.create = function (formElement) {
-
         $(formElement).validate();
         if ($(formElement).valid()) {
             jQuery.support.cors = true;
-            var customerDto = {
+            var UserDto = {
                 EmailAddress: $('#txtEmailAddressLogin').val(),
                 Password: $('#txtPasswordLogin').val()
             };
@@ -51,15 +50,15 @@ function LoginViewModel() {
             $.ajax({
                 url: baseUri + '/Login?callback=?',
                 type: 'POST',
-                data: JSON.stringify(customerDto),
+                data: JSON.stringify(UserDto),
                 contentType: "application/json;charset=utf-8",
                 success: function (result) {
-                    if (result == "") {
+                    if (result == "" || result == null) {
                         alert("Invalid UserName and Password.");
                     } else {
                         $.ajax({
                             type: 'GET',
-                            data: { CustomerId: result.CustomerID, EmailAddress: result.EmailAddress },
+                            data: { UserId: result.UserID, EmailAddress: result.EmailAddress },
                             url: SaveSessionurl,
                             success: function () {
                                 window.location = location.protocol + '//' + location.host + '/CreditApp/Index';
